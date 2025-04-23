@@ -1,4 +1,4 @@
-запуск из корневой папки:
+запуск из папки, содержащей mai_schedule_parser:
 
 py -m mai_schedule_parser.main (номер группы, ctrlC+ctrlV с сайта маи) (номер недели)
 
