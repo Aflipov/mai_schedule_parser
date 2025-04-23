@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, UniqueConstraint
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 
@@ -63,6 +63,10 @@ class Lesson(Base):
     teacher = relationship("Teacher", back_populates="lessons") # Связь с преподавателем
     classroom = relationship("Classroom", back_populates="lessons") # Связь с кабинетом
     group = relationship("Group", back_populates="lessons") # Связь с группой (одна группа для одного урока)
+
+    __table_args__ = (
+        UniqueConstraint('group_id', 'start_time', name='unique_lesson'),
+    )
 
     def __repr__(self):
         return f"<Lesson(subject='{self.subject.name}', start_time='{self.start_time}')>"
